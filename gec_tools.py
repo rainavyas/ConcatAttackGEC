@@ -6,10 +6,9 @@ random.seed(10)
 def get_sentences(data_path, num=-1):
     with open(data_path, 'r') as f:
         lines = f.readlines()
-    print("Type ", type(num))
     if num > 0:
         print("Here Type ", type(num))
-        lines = random.shuffle(lines)
+        random.shuffle(lines)
         lines = lines[:num]
     texts = [' '.join(l.rstrip('\n').split()[1:]) for l in lines]
     ids = [l.rstrip('\n').split()[0] for l in lines]
