@@ -33,7 +33,7 @@ if __name__ == "__main__":
     gen_args = TTSettings(num_beams=5, min_length=1)
 
     # Load input sentences
-    _, sentences = get_sentences(args.IN)
+    _, sentences = get_sentences(args.IN, num=5) #debug
 
     # Correction (prediction) for each input sentence
     edit_counts = []
