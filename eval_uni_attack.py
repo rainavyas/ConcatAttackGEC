@@ -39,10 +39,11 @@ if __name__ == "__main__":
     edit_counts = []
     for i, sent in enumerate(sentences):
         print(f'On {i}/{len(sentences)}')
-        attack_sent = sent + ' ' + args.phrase
-        correction = correct(model, attack_sent, gen_args)
-        print(attack_sent + '\t' + correction)
-        edit_counts.append(count_edits(attack_sent, correction))
+        if args.phrase != '':
+            sent = sent + ' ' + args.phrase
+        correction = correct(model, sent, gen_args)
+        print(sent + '\t' + correction)
+        edit_counts.append(count_edits(sent, correction))
     
     edits_mean = mean(edit_counts)
     edits_std = stdev(edit_counts)

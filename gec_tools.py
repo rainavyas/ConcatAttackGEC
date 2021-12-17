@@ -25,6 +25,8 @@ def count_edits(input, prediction):
     Count number of edits
     '''
     annotator = errant.load('en')
+    input = annotator.parse(input)
+    prediction = annotator.parse(prediction)
     alignment = annotator.align(input, prediction)
     edits = annotator.merge(alignment)
     return len(edits)
