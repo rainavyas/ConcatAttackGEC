@@ -1,5 +1,5 @@
 # Task
-Universal concatenation adversarial attack on Grammatical Error Correction System.
+Universal concatenation adversarial attack on Grammatical Error Correction system.
 
 Grammatical Error Correction (GEC) systems can be used a measure of a candidate's fluency. A GEC systems that makes no changes to an input text (i.e. no corrections) suggests that the input text is grammaticaly perfect. In an assessment context, a candidate may attempt mal-practice through performing an adversarial attack that modifies their incorrect input text in a manner that fools the GEC system into making no corrections, i.e. falsely suggesting the input text is perfect.
 
