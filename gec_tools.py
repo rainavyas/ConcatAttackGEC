@@ -1,11 +1,12 @@
 import random
 import errant
 
+random.seed(10)
+
 def get_sentences(data_path, num=-1):
     with open(data_path, 'r') as f:
         lines = f.readlines()
     if num > 0:
-        random.seed(10)
         lines = random.shuffle(lines)
         lines = lines[:num]
     texts = [' '.join(l.rstrip('\n').split()[1:]) for l in lines]
