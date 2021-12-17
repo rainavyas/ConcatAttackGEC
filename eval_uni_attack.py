@@ -33,19 +33,18 @@ if __name__ == "__main__":
     gen_args = TTSettings(num_beams=5, min_length=1)
 
     # Load input sentences
-    _, sentences = get_sentences(args.IN, num=5) #debug
+    _, sentences = get_sentences(args.IN)
 
-    # Correction (prediction) for each input sentence
+    # Correction (prediction) for each input sentence and associated number of edits
     edit_counts = []
     for i, sent in enumerate(sentences):
         print(f'On {i}/{len(sentences)}')
         if args.phrase != '':
             sent = sent + ' ' + args.phrase
         correction = correct(model, sent, gen_args)
-        print(sent + '\t' + correction)
         edit_counts.append(count_edits(sent, correction))
     
     edits_mean = mean(edit_counts)
     edits_std = stdev(edit_counts)
-    print(f'Mean: {edits_mean}\t Std: {edits_std}')
+    print(f'\nMean: {edits_mean}\t Std: {edits_std}')
 
