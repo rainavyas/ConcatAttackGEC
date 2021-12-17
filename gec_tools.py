@@ -1,10 +1,10 @@
 import random
 import errant
 
-def get_sentences(data_path, num=None):
+def get_sentences(data_path, num=-1):
     with open(data_path, 'r') as f:
         lines = f.readlines()
-    if num is not None:
+    if num > 0:
         random.seed(10)
         lines = random.shuffle(lines)
         lines = lines[:num]
