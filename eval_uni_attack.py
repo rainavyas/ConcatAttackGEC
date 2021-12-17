@@ -41,6 +41,7 @@ if __name__ == "__main__":
         print(f'On {i}/{len(sentences)}')
         attack_sent = sent + ' ' + args.phrase
         correction = correct(model, attack_sent, gen_args)
+        print(attack_sent + '\t' + correction)
         edit_counts.append(count_edits(attack_sent, correction))
     
     edits_mean = mean(edit_counts)
