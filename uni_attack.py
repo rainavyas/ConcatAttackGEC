@@ -59,7 +59,7 @@ if __name__ == "__main__":
     test_words = test_words[start_index:start_index+args.search_size]
 
     # Add blank word at beginning of list
-    test_words = ['']+test_words
+    # test_words = ['']+test_words
 
     # Initialise empty log file
     with open(args.LOG, 'w') as f:
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     for word in test_words:
         attack_phrase = args.prev_attack + ' ' + word
         edits_avg = get_avg(model, sentences, attack_phrase, gen_args)
-        print(word, edits_avg) # temp debug
+        # print(word, edits_avg) # temp debug
 
         if edits_avg < best[1]:
             best = (word, edits_avg)
