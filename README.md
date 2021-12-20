@@ -14,6 +14,7 @@ Clone this repository.
 ## Install with PyPI
 
 `pip install happytransformer`
+`pip install errant`
 
 # Experimental Results
 
