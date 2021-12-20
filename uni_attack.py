@@ -16,7 +16,7 @@ from statistics import mean
 
 def get_avg(model, sentences, attack_phrase, gen_args):
     edit_counts = []
-    for sent in enumerate(sentences):
+    for sent in sentences:
         sent = sent + ' ' + attack_phrase
         correction = correct(model, sent, gen_args)
         edit_counts.append(count_edits(sent, correction))
