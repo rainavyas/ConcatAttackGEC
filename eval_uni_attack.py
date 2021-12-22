@@ -49,15 +49,19 @@ if __name__ == "__main__":
         edit_counts.append(count_edits(sent, correction))
         edit_counts_with_attack.append(count_edits(sent_with_attack, correction_with_attack))
     
-    edits_mean = mean(edit_counts)
-    edits_std = stdev(edit_counts)
-    print()
-    print('ALL')
-    print(f'\nMean: {edits_mean}\t Std: {edits_std}')
-    print()
 
     edits_mean = mean(edit_counts_with_attack)
     edits_std = stdev(edit_counts_with_attack)
+    print()
+    print('All')
+    print(f'\nMean: {edits_mean}\t Std: {edits_std}')
+    print()
+
+
+    # Repeat and exclude the perfect
+    edits_imperfect = [b for a,b in zip(edit_counts, edit_counts_with_attack) if a>0]
+    edits_mean = mean(edits_imperfect)
+    edits_std = stdev(edits_imperfect)
     print()
     print('Excluding Perfect')
     print(f'\nMean: {edits_mean}\t Std: {edits_std}')
