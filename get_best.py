@@ -10,7 +10,7 @@ import scandir
 
 class best_words:
     def __init__(self, num_words):
-        self.words = [['none', 0]]*num_words
+        self.words = [['none', 1000]]*num_words
 
     def check_word_to_be_added(self, y_avg):
         if y_avg < self.words[-1][1]:
