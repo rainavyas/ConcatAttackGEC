@@ -30,12 +30,12 @@ if __name__ == "__main__":
     # Get command line arguments
     commandLineParser = argparse.ArgumentParser()
     commandLineParser.add_argument('DIR', type=str, help='Specify directory with all word log files')
-    commandLineParser.add_argument('OUTPUT', type=str, help='Specify output file')
+    # commandLineParser.add_argument('OUTPUT', type=str, help='Specify output file')
     commandLineParser.add_argument('--k', type=int, default=100, help="Specify num_words to keep")
 
     args = commandLineParser.parse_args()
     words_dir = args.DIR
-    output_file = args.OUTPUT
+    # output_file = args.OUTPUT
     num_words = args.k
 
     # Save the command run
