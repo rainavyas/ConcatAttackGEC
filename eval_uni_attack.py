@@ -37,14 +37,31 @@ if __name__ == "__main__":
 
     # Correction (prediction) for each input sentence and associated number of edits
     edit_counts = []
+    edit_counts_with_attack = []
     for i, sent in enumerate(sentences):
+
         print(f'On {i}/{len(sentences)}')
-        if args.phrase != '':
-            sent = sent + ' ' + args.phrase
+        sent_with_attack = sent + ' ' + args.phrase
+
         correction = correct(model, sent, gen_args)
+        correction_with_attack = correct(model, sent_with_attack, gen_args)
+
         edit_counts.append(count_edits(sent, correction))
+        edit_counts_with_attack.append(count_edits(sent_with_attack, correction_with_attack))
     
     edits_mean = mean(edit_counts)
     edits_std = stdev(edit_counts)
+    print()
+    print('ALL')
     print(f'\nMean: {edits_mean}\t Std: {edits_std}')
+    print()
+
+    edits_mean = mean(edit_counts_with_attack)
+    edits_std = stdev(edit_counts_with_attack)
+    print()
+    print('Excluding Perfect')
+    print(f'\nMean: {edits_mean}\t Std: {edits_std}')
+    print()
+
+
 
