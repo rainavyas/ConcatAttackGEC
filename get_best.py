@@ -13,15 +13,15 @@ class best_words:
         self.words = [['none', 0]]*num_words
 
     def check_word_to_be_added(self, y_avg):
-        if y_avg > self.words[-1][1]:
+        if y_avg < self.words[-1][1]:
             return True
         else:
             return False
 
     def add_word(self, word, y_avg):
         self.words.append([word, y_avg])
-        # Sort from highest to lowest y_avg
-        self.words = sorted(self.words, reverse = True, key = lambda x: x[1])
+        # Sort
+        self.words = sorted(self.words, reverse = False, key = lambda x: x[1])
         # Drop the worst extra word
         self.words = self.words[:-1]
 
