@@ -12,12 +12,22 @@ from happytransformer import HappyTextToText, TTSettings
 import torch
 from gec_tools import get_sentences, correct, count_edits
 from statistics import mean, stdev
+import matplotlib.pyplot as plt
+
+def print_stats(edits, name):
+    print()
+    print(f'{name}: {len(edits)} samples')
+    edits_mean = mean(edits)
+    edits_std = stdev(edits)
+    print(f'\nMean: {edits_mean}\t Std: {edits_std}')
+    print()
 
 if __name__ == "__main__":
 
     # Get command line arguments
     commandLineParser = argparse.ArgumentParser()
     commandLineParser.add_argument('IN', type=str, help='Path to input data')
+    commandLineParser.add_argument('FIG', type=str, help='Where to save histogram plot')
     commandLineParser.add_argument('--phrase', type=str, default='', help='Universal adversarial phrase')
     args = commandLineParser.parse_args()
 
@@ -50,22 +60,27 @@ if __name__ == "__main__":
         edit_counts_with_attack.append(count_edits(sent_with_attack, correction_with_attack))
     
 
-    edits_mean = mean(edit_counts_with_attack)
-    edits_std = stdev(edit_counts_with_attack)
-    print()
-    print('All')
-    print(f'\nMean: {edits_mean}\t Std: {edits_std}')
-    print()
+    # Print stats for all samples
+    print_stats(edit_counts_with_attack, 'ALL')
+
+    # Print stats for samples filtered by number of actual errors (from no attack)
+    thresholds = [0, 1, 2, 3, 4, 5]
+    for thresh in thresholds:
+        edits_imperfect = [b for a,b in zip(edit_counts, edit_counts_with_attack) if a>thresh]
+        name = f'Filtered >{thresh}'
+        print_stats(edits_imperfect, name)
+    
+    # Plot histogram of edit count distribution before and after attack
+    plt.hist(edit_counts, bins=10, alpha=0.5, label='No Attack')
+    plt.hist(edit_counts_with_attack, bins=10, alpha=0.5, label='With Attack')
+    plt.xlabel("Edits")
+    plt.ylabel("Count")
+    plt.legend()
+    plt.savefig(args.FIG, bbox_inches='tight')
 
 
-    # Repeat and exclude the perfect
-    edits_imperfect = [b for a,b in zip(edit_counts, edit_counts_with_attack) if a>0]
-    edits_mean = mean(edits_imperfect)
-    edits_std = stdev(edits_imperfect)
-    print()
-    print('Excluding Perfect')
-    print(f'\nMean: {edits_mean}\t Std: {edits_std}')
-    print()
+
+
 
 
 
