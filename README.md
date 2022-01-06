@@ -18,4 +18,14 @@ Clone this repository.
 
 # Experimental Results
 
-Results to be reported here.
+The universal attack phrase is learnt on the training set and the impact of the attack here are reported on the test set.
+
+|N|Average Edits|
+|---------------|-------------|
+0 | 1.70 |
+1 | 1.74 |
+2 | 1.89 |
+3 | 0.82 |
+4 | 0.91 |
+5 | 1.85 |
+6 | 1.01 |
