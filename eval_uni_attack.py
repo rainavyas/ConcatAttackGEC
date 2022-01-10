@@ -58,11 +58,15 @@ if __name__ == "__main__":
         print(f'Sentence: {sent_with_attack}')
         print(f'Correction: {correction_with_attack}')
 
-        edit_counts.append(len(return_edits(sent, correction)))
+        edits = return_edits(sent, correction)
+        edits = [e.o_str+' -> '+e.c_str for e in edits]
+        edit_counts.append(len(edits))
         edits_with_attack = return_edits(sent_with_attack, correction_with_attack)
         edits_with_attack = [e.o_str+' -> '+e.c_str for e in edits_with_attack]
         edit_counts_with_attack.append(len(edits_with_attack))
-        print(f'Edits: {edits_with_attack}\n')
+        print(f'Edits without attack: {edits}')
+        print(f'Edits with attack: {edits_with_attack}\n')
+
     
 
     # Print stats for all samples
