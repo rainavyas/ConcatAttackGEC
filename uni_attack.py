@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
     best = ('none', 1000)
     for word in test_words:
-        attack_phrase = args.prev_attack + ' ' + word
+        attack_phrase = args.prev_attack + ' ' + word + '.'
         edits_avg = get_avg(model, sentences, attack_phrase, gen_args)
         # print(word, edits_avg) # temp debug
 

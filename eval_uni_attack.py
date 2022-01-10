@@ -51,7 +51,7 @@ if __name__ == "__main__":
     for i, sent in enumerate(sentences):
 
         print(f'On {i}/{len(sentences)}')
-        sent_with_attack = sent + ' ' + args.phrase
+        sent_with_attack = sent + ' ' + args.phrase + '.'
 
         correction = correct(model, sent, gen_args)
         correction_with_attack = correct(model, sent_with_attack, gen_args)
