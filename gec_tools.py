@@ -12,6 +12,10 @@ def get_sentences(data_path, num=-1):
         lines = lines[:num]
     texts = [' '.join(l.rstrip('\n').split()[1:]) for l in lines]
     ids = [l.rstrip('\n').split()[0] for l in lines]
+
+    # Remove space before full stops at end
+    texts = [t[:-2]+'.' if t[-2:]==' .' else t for t in texts]
+
     return ids, texts
 
 def correct(model, sentence, gen_args):
