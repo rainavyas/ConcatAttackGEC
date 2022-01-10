@@ -60,6 +60,7 @@ if __name__ == "__main__":
 
         edit_counts.append(len(return_edits(sent, correction)))
         edits_with_attack = return_edits(sent_with_attack, correction_with_attack)
+        edits_with_attack = [e.o_str+' -> '+e.c_str for e in edits_with_attack]
         edit_counts_with_attack.append(len(edits_with_attack))
         print(f'Edits: {edits_with_attack}\n')
     

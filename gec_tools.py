@@ -40,5 +40,4 @@ def return_edits(input, prediction):
     prediction = annotator.parse(prediction)
     alignment = annotator.align(input, prediction)
     edits = annotator.merge(alignment)
-    edits = [e.o_str+' -> '+e.c_str for e in edits]
     return edits
