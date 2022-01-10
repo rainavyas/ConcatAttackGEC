@@ -30,3 +30,14 @@ def count_edits(input, prediction):
     alignment = annotator.align(input, prediction)
     edits = annotator.merge(alignment)
     return len(edits)
+
+def return_edits(input, prediction):
+    '''
+    Get edits
+    '''
+    annotator = errant.load('en')
+    input = annotator.parse(input)
+    prediction = annotator.parse(prediction)
+    alignment = annotator.align(input, prediction)
+    edits = annotator.merge(alignment)
+    return edits

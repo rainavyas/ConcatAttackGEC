@@ -10,7 +10,7 @@ import os
 import argparse
 from happytransformer import HappyTextToText, TTSettings
 import torch
-from gec_tools import get_sentences, correct, count_edits
+from gec_tools import get_sentences, correct, return_edits
 from statistics import mean, stdev
 # import matplotlib.pyplot as plt
 
@@ -56,10 +56,12 @@ if __name__ == "__main__":
         correction = correct(model, sent, gen_args)
         correction_with_attack = correct(model, sent_with_attack, gen_args)
         print(f'Sentence: {sent_with_attack}')
-        print(f'Correction: {correction_with_attack}\n')
+        print(f'Correction: {correction_with_attack}')
 
-        edit_counts.append(count_edits(sent, correction))
-        edit_counts_with_attack.append(count_edits(sent_with_attack, correction_with_attack))
+        edit_counts.append(len(return_edits(sent, correction)))
+        edits_with_attack = return_edits(sent_with_attack, correction_with_attack)
+        edit_counts_with_attack.append(len(edits_with_attack))
+        print(f'Edits: {edits_with_attack}\n')
     
 
     # Print stats for all samples
