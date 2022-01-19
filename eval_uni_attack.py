@@ -115,7 +115,7 @@ if __name__ == "__main__":
     #     print_stats(edits_imperfect, name)
     
     # Plot histogram of edit count distribution before and after attack
-    plt.hist(edit_counts, bins=10, alpha=0.5, label='No Attack')
+    plt.hist(edit_counts, bins=12, alpha=0.5, label='No Attack', density=True)
     plt.hist(edit_counts_with_attack, bins=12, alpha=0.5, label='With Attack', density=True)
     plt.xlabel("Edits")
     plt.ylabel("Probability Density")
