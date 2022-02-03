@@ -103,11 +103,13 @@ if __name__ == "__main__":
 
         edits = return_edits(sent, correction)
         update_edit_types(edits, original_edit_types)
+        print(original_edit_types)
         edits = [e.o_str+' -> '+e.c_str for e in edits]
         edit_counts.append(len(edits))
 
         edits_with_attack = return_edits(sent_with_attack, correction_with_attack)
         update_edit_types(edits_with_attack, adv_edit_types)
+        print(adv_edit_types)
         original_part, adv_part = get_edits_by_part(sent, edits_with_attack)
         original_part_count.append(original_part)
         adv_part_count.append(adv_part)
