@@ -44,4 +44,6 @@ def return_edits(input, prediction):
     prediction = annotator.parse(prediction)
     alignment = annotator.align(input, prediction)
     edits = annotator.merge(alignment)
+    for e in edits:
+        e = annotator.classify(e)
     return edits
