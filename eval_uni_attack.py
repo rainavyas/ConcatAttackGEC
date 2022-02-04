@@ -125,9 +125,9 @@ if __name__ == "__main__":
     print_stats(edit_counts_with_attack, 'ALL', original_part_count, adv_part_count)
 
     # Save edit type distribution to file
-    texts = ['Original Adv']
+    texts = ['Type Original Adv']
     for edit_type in sorted(list(original_edit_types.keys())):
-        texts.append(f'\n{original_edit_types[edit_type]} {adv_edit_types[edit_type]}')
+        texts.append(f'\n{edit_type} {original_edit_types[edit_type]} {adv_edit_types[edit_type]}')
     with open(args.EDIT_TYPE, 'w') as f:
             f.writelines(texts)
     
