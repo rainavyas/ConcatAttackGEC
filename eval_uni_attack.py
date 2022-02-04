@@ -126,7 +126,10 @@ if __name__ == "__main__":
 
     # Save edit type distribution to file
     texts = ['Type Original Adv']
-    for edit_type in sorted(list(original_edit_types.keys())):
+    keys1 = list(original_edit_types.keys())
+    keys2 = list(adv_edit_types.keys())
+    all_keys = sorted(set(keys1+keys2))
+    for edit_type in all_keys:
         texts.append(f'\n{edit_type} {original_edit_types[edit_type]} {adv_edit_types[edit_type]}')
     with open(args.EDIT_TYPE, 'w') as f:
             f.writelines(texts)
