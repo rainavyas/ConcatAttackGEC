@@ -10,7 +10,6 @@ Also:
 - Show errant error type distribution before and after attack 
 '''
 
-from email.policy import default
 import sys
 import os
 import argparse
