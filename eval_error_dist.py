@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     source_sens = []
     target_sens = []
-    for i, (id, text) in enumerate(target_id2text.items()):
+    for id, text in target_id2text.items():
         try:
             source_sens.append(source_id2text[id]+'\n')
             target_sens.append(target_id2text[id]+'\n')
@@ -52,7 +52,8 @@ if __name__ == "__main__":
 
     # Get the edit types
     edit_types = defaultdict(int)
-    for s, t in zip(source_sens, target_sens):
+    for i, (s, t) in enumerate(zip(source_sens, target_sens)):
+        print(f'On {i}/{len(source_sens)}')
         edits = return_edits(s, t)
         update_edit_types(edits, edit_types)
 
