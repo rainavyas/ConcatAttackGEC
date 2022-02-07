@@ -59,7 +59,7 @@ if __name__ == "__main__":
 
     # Save edit type distribution to file
     texts = ['Type Count']
-    for edit_type in edit_types.keys():
+    for edit_type in sorted(list(edit_types.keys())):
         texts.append(f'\n{edit_type} {edit_types[edit_type]}')
     with open(args.EDIT_TYPE, 'w') as f:
             f.writelines(texts)
